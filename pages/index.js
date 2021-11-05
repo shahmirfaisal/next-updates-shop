@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import Layout from "../components/Layout";
 import { Button, Container, Typography, Grid } from "@material-ui/core";
@@ -10,10 +10,11 @@ import Aside from "../components/Aside";
 
 export default function Home(props) {
   const classes = useStyles();
+  const [numOfPosts, setNumOfPosts] = useState(10);
 
-  useEffect(() => {
-    console.log(props.posts);
-  }, []);
+  const loadMore = () => {
+    setNumOfPosts((numOfPosts) => numOfPosts + 10);
+  };
 
   return (
     <Layout>
@@ -47,7 +48,7 @@ export default function Home(props) {
       </section>
 
       <Container maxWidth="lg">
-        <Grid container justify="space-between">
+        <Grid container justifyContent="space-between">
           <Grid item md={12} xs={12} component="section">
             <Grid
               container
@@ -56,12 +57,23 @@ export default function Home(props) {
               id="posts"
               component="section"
             >
-              {props.posts.map((post) => (
+              {props.posts.slice(0, numOfPosts).map((post) => (
                 <Grid item xs={12} md={6} key={post.id}>
                   <Post post={post} />
                 </Grid>
               ))}
             </Grid>
+
+            {numOfPosts >= props.posts.length ? null : (
+              <Button
+                variant="outlined"
+                color="primary"
+                style={{ margin: "50px auto 0 auto", display: "block" }}
+                onClick={loadMore}
+              >
+                Load more articles...
+              </Button>
+            )}
           </Grid>
 
           {/* <Grid item md={4} xs={12}>

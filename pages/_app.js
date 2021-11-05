@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import "../styles/global.scss";
+import "react-notifications/lib/notifications.css";
 import { ThemeProvider, createTheme } from "@material-ui/core/styles";
 import { CssBaseline } from "@material-ui/core";
+import { NotificationContainer } from "react-notifications";
 
 export default function App({ Component, pageProps }) {
   useEffect(() => {
@@ -23,6 +25,7 @@ export default function App({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Component {...pageProps} />
+        <NotificationContainer />
       </ThemeProvider>
     </>
   );

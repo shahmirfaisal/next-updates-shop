@@ -2,6 +2,7 @@ import axios from "axios";
 import Layout from "../components/Layout";
 import Head from "next/head";
 import Category from "../components/Category";
+import { Typography, Container } from "@material-ui/core";
 
 export default function TechnologyPosts(props) {
   return (
@@ -13,6 +14,19 @@ export default function TechnologyPosts(props) {
           content="Updates Shop is a news platform which gives latest news and updates!"
         />
       </Head>
+
+      <Container maxWidth="lg">
+        <Typography
+          variant="h4"
+          style={{
+            marginTop: "40px",
+            fontWeight: 600,
+            textDecoration: "underline",
+          }}
+        >
+          Read Technology News
+        </Typography>
+      </Container>
 
       <Category posts={props.posts} />
     </Layout>
