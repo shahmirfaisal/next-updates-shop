@@ -11,10 +11,15 @@ import {
 import { useStyles } from "../styles/PostStyle.js";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import slugify from "slugify";
 
 const Post = ({ post }) => {
   const classes = useStyles();
   const router = useRouter();
+  const slug = slugify(post.title, {
+    remove: /[*+~.()'"!:@]/g,
+    lower: true,
+  });
 
   return (
     <Card className={classes.card} component="article">
@@ -23,12 +28,12 @@ const Post = ({ post }) => {
           className={classes.img}
           title={post.title}
           image={post.coverImage}
-          onClick={() => router.push(`/news/${post.id}`)}
+          onClick={() => router.push(`/news/${slug}/${post.id}`)}
         />
       </CardActionArea>
       <CardContent>
         <Typography variant="h5" className={classes.title}>
-          <Link href={`/news/${post.id}`}>{post.title}</Link>
+          <Link href={`/news/${slug}/${post.id}`}>{post.title}</Link>
         </Typography>
         <Typography variant="body1">{post.excerpt}</Typography>
 
@@ -39,7 +44,7 @@ const Post = ({ post }) => {
         <Button
           variant="outlined"
           color="primary"
-          onClick={() => router.push(`/news/${post.id}`)}
+          onClick={() => router.push(`/news/${slug}/${post.id}`)}
         >
           Continue reading...
         </Button>

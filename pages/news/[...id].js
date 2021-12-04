@@ -69,7 +69,7 @@ export default function News(props) {
 export async function getServerSideProps({ params: { id } }) {
   try {
     const postRes = await axios.get(
-      `https://latest-news-api.herokuapp.com/news/${id}`
+      `https://latest-news-api.herokuapp.com/news/${id[1]}`
     );
     const postsRes = await axios.get(
       "https://latest-news-api.herokuapp.com/Latest"
