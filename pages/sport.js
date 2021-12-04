@@ -33,12 +33,13 @@ export default function SportPosts(props) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const res = await axios.get("https://latest-news-api.herokuapp.com/Sport");
   const posts = res.data;
   return {
     props: {
       posts,
     },
+    revalidate: 10,
   };
 }
