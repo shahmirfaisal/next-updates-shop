@@ -16,7 +16,7 @@ export default function News(props) {
         <title>{`${props.post.title} - Updates Shop`}</title>
         <meta
           name="description"
-          content={props.post.text.slice(0, 200) + "..."}
+          content={props.post.text.slice(0, 300) + "..."}
         />
       </Head>
 

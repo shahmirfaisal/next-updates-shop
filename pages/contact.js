@@ -49,7 +49,7 @@ export default function ContactPage() {
         <title>Contact Us - Updates Shop</title>
         <meta
           name="description"
-          content="Updates Shop is a news platform which gives latest news and updates!"
+          content="Get the latest news, headlines and stories from Pakistan and across the world. We have the most up to date information on politics, technology, business, entertainment and more."
         />
       </Head>
 
