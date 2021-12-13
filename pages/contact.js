@@ -12,12 +12,14 @@ import {
 import axios from "axios";
 import { NotificationManager } from "react-notifications";
 import { useStyles } from "../styles/ContactStyle";
+import { useRouter } from "next/router";
 
 export default function ContactPage() {
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const router = useRouter();
   const classes = useStyles();
 
   const changeName = (e) => setName(e.target.value);
@@ -51,7 +53,7 @@ export default function ContactPage() {
           name="description"
           content="Get the latest news, headlines and stories from Pakistan and across the world. We have the most up to date information on politics, technology, business, entertainment and more."
         />
-        <meta property="og:url" content={window.location.href} key="ogurl" />
+        <meta property="og:url" content={router.pathname} key="ogurl" />
         <meta property="og:image" content="/favicon.ico" key="ogimage" />
         <meta property="og:site_name" content="Updates Shop" key="ogsitename" />
         <meta
