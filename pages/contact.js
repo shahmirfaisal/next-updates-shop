@@ -51,6 +51,19 @@ export default function ContactPage() {
           name="description"
           content="Get the latest news, headlines and stories from Pakistan and across the world. We have the most up to date information on politics, technology, business, entertainment and more."
         />
+        <meta property="og:url" content={window.location.href} key="ogurl" />
+        <meta property="og:image" content="/favicon.ico" key="ogimage" />
+        <meta property="og:site_name" content="Updates Shop" key="ogsitename" />
+        <meta
+          property="og:title"
+          content="Contact Us - Updates Shop"
+          key="ogtitle"
+        />
+        <meta
+          property="og:description"
+          content="Get the latest news, headlines and stories from Pakistan and across the world. We have the most up to date information on politics, technology, business, entertainment and more."
+          key="ogdesc"
+        />
       </Head>
 
       <Container maxWidth="lg">
