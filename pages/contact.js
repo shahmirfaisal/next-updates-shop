@@ -69,7 +69,7 @@ export default function ContactPage() {
       </Head>
 
       <Container maxWidth="lg">
-        <Typography variant="h3" align="center" className={classes.title}>
+        <Typography variant="h1" align="center" className={classes.title}>
           Get in touch with us!
         </Typography>
         <Paper component="form" className={classes.form} onSubmit={submit}>

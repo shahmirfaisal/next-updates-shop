@@ -5,6 +5,8 @@ export const useStyles = makeStyles({
     fontWeight: 600,
     marginTop: "50px",
     marginBottom: "50px",
+    fontSize: "3rem",
+    lineHeight: 1.167,
   },
 
   form: {

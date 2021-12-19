@@ -24,15 +24,20 @@ export const useStyles = makeStyles({
     width: "800px",
     maxWidth: "100%",
 
-    "& h3": {
+    "& h1": {
       fontWeight: 600,
+      fontSize: "3rem",
+      lineHeight: "1.167",
     },
 
-    "& h5": {
+    "& p": {
       margin: "25px 0",
       fontWeight: 400,
-      width: "600px",
+      width: "700px",
       maxWidth: "100%",
+      display: "block",
+      fontSize: "1.3rem",
+      lineHeight: 1.6,
     },
   },
 

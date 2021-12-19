@@ -33,11 +33,12 @@ export default function BusinessPosts(props) {
 
       <Container maxWidth="lg">
         <Typography
-          variant="h4"
+          variant="h1"
           style={{
             marginTop: "40px",
             fontWeight: 600,
             textDecoration: "underline",
+            fontSize: "2.125rem",
           }}
         >
           Read Business News

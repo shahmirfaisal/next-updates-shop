@@ -50,7 +50,7 @@ export default function News(props) {
               <div className={classes.img}>
                 <img src={props.post.coverImage} alt={props.post.title} />
               </div>
-              <Typography className={classes.title} variant="h4">
+              <Typography className={classes.title} variant="h1">
                 {props.post.title}
               </Typography>
               <Typography className={classes.date}>

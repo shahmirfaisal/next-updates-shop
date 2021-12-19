@@ -4,7 +4,7 @@ import Post from "./Post";
 
 const LatestPosts = (props) => {
   return (
-    <Box marginTop={17}>
+    <Box marginTop={17} component="aside">
       <Typography
         style={{
           fontWeight: "bold",

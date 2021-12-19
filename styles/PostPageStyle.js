@@ -28,6 +28,8 @@ export const useStyles = makeStyles({
   title: {
     fontWeight: 800,
     margin: "20px 0",
+    fontSize: "2.125rem",
+    lineHeight: 1.235,
   },
 
   date: {

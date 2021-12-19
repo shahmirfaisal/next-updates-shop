@@ -44,9 +44,11 @@ export default function Home(props) {
       <section className={classes.container}>
         <Container maxWidth="lg" component="section">
           <div className={classes.content}>
-            <Typography variant="h3">Welcome to Updates Shop!</Typography>
-            <Typography variant="h5">
-              A place where we will keep you up-to-date with every single news.
+            <Typography variant="h1">Welcome to Updates Shop!</Typography>
+            <Typography>
+              Get the latest news, headlines and stories from Pakistan and
+              across the world. We have the most up to date information on
+              politics, technology, business, entertainment and more.
             </Typography>
             <Button
               variant="contained"
