@@ -51,5 +51,9 @@ export const useStyles = makeStyles({
     "& ul, & ol": {
       padding: "0 0 0 20px",
     },
+    "& img": {
+      display: "block",
+      width: "100%",
+    },
   },
 });
