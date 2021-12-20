@@ -18,7 +18,7 @@ export default function News(props) {
           name="description"
           content={props.post.text.slice(0, 300) + "..."}
         />
-        <meta property="og:url" content={window.location.href} key="ogurl" />
+        <meta property="og:url" content={router.pathname} key="ogurl" />
         <meta
           property="og:image"
           content={props.post.coverImage}
