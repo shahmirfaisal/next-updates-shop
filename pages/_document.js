@@ -18,6 +18,12 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
             rel="stylesheet"
           />
+
+          <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7942887016717078"
+            crossOrigin="anonymous"
+          ></script>
         </Head>
         <body>
           <Main />
