@@ -22,6 +22,8 @@ const Footer = () => {
             <Typography className={classes.bold}>Pages</Typography>
             <Link href="/">Home</Link>
             <Link href="/contact">Contact</Link>
+            <Link href="/privacy">Privacy Policy</Link>
+            <Link href="/terms">Terms and Conditions</Link>
           </Grid>
 
           <Grid item>

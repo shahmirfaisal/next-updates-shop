@@ -85,23 +85,30 @@ export default function News(props) {
 }
 
 export async function getStaticProps({ params: { id } }) {
-  const postRes = await axios.get(
-    `https://latest-news-api.herokuapp.com/news/${id}`
-  );
-  const postsRes = await axios.get(
-    "https://latest-news-api.herokuapp.com/Latest"
-  );
-  const post = postRes.data;
-  let posts = postsRes.data;
-  posts = posts?.slice(0, 6);
+  try {
+    const postRes = await axios.get(
+      `https://latest-news-api.herokuapp.com/news/${id}`
+    );
+    const postsRes = await axios.get(
+      "https://latest-news-api.herokuapp.com/Latest"
+    );
+    const post = postRes.data;
+    let posts = postsRes.data;
+    posts = posts?.slice(0, 6);
 
-  return {
-    props: {
-      post,
-      posts,
-    },
-    revalidate: 60,
-  };
+    return {
+      props: {
+        post,
+        posts,
+      },
+      revalidate: 60,
+    };
+  } catch (error) {
+    return {
+      notFound: true,
+      revalidate: 60,
+    };
+  }
 }
 
 export const getStaticPaths = async () => {
