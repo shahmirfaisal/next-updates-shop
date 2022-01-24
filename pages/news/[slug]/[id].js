@@ -105,7 +105,7 @@ export async function getStaticProps({ params: { id } }) {
 }
 
 export const getStaticPaths = async () => {
-  const posts = [];
+  let posts = [];
   const endpoints = [
     "https://latest-news-api.herokuapp.com/Latest",
     "https://latest-news-api.herokuapp.com/Sport",
@@ -116,8 +116,9 @@ export const getStaticPaths = async () => {
   const responses = await axios.all(
     endpoints.map((endpoint) => axios.get(endpoint))
   );
+
   responses.forEach((res) => {
-    posts.concat(res.data);
+    posts = posts.concat(res.data);
   });
 
   const paths = posts.map((post) => {
