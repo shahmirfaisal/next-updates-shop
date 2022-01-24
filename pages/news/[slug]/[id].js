@@ -1,10 +1,11 @@
 import axios from "axios";
-import Layout from "../../components/Layout";
+import Layout from "../../../components/Layout";
 import Head from "next/head";
 import { Container, Grid, Typography, Button } from "@material-ui/core";
-import { useStyles } from "../../styles/PostPageStyle";
+import { useStyles } from "../../../styles/PostPageStyle";
 import { useRouter } from "next/router";
-import LatestPosts from "../../components/LatestPosts";
+import LatestPosts from "../../../components/LatestPosts";
+import slugify from "slugify";
 
 export default function News(props) {
   const classes = useStyles();
@@ -83,33 +84,56 @@ export default function News(props) {
   );
 }
 
-export async function getServerSideProps({ params: { id } }) {
-  try {
-    const postRes = await axios.get(
-      `https://latest-news-api.herokuapp.com/news/${id[1]}`
-    );
-    const postsRes = await axios.get(
-      "https://latest-news-api.herokuapp.com/Latest"
-    );
-    const post = postRes.data;
-    let posts = postsRes.data;
-    posts = posts?.slice(0, 6);
+export async function getStaticProps({ params: { id } }) {
+  const postRes = await axios.get(
+    `https://latest-news-api.herokuapp.com/news/${id}`
+  );
+  const postsRes = await axios.get(
+    "https://latest-news-api.herokuapp.com/Latest"
+  );
+  const post = postRes.data;
+  let posts = postsRes.data;
+  posts = posts?.slice(0, 6);
 
-    if (!post || !posts) {
-      return {
-        notFound: true,
-      };
-    }
+  return {
+    props: {
+      post,
+      posts,
+    },
+    revalidate: 60,
+  };
+}
 
+export const getStaticPaths = async () => {
+  const posts = [];
+  const endpoints = [
+    "https://latest-news-api.herokuapp.com/Latest",
+    "https://latest-news-api.herokuapp.com/Sport",
+    "https://latest-news-api.herokuapp.com/Technology",
+    "https://latest-news-api.herokuapp.com/Coronavirus",
+    "https://latest-news-api.herokuapp.com/Business",
+  ];
+  const responses = await axios.all(
+    endpoints.map((endpoint) => axios.get(endpoint))
+  );
+  responses.forEach((res) => {
+    posts.concat(res.data);
+  });
+
+  const paths = posts.map((post) => {
     return {
-      props: {
-        post,
-        posts,
+      params: {
+        id: post.id,
+        slug: slugify(post.title, {
+          remove: /[*+~.()'"!:@]/g,
+          lower: true,
+        }),
       },
     };
-  } catch (error) {
-    return {
-      notFound: true,
-    };
-  }
-}
+  });
+
+  return {
+    paths,
+    fallback: "blocking",
+  };
+};
