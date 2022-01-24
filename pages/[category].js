@@ -6,27 +6,31 @@ import { Typography, Container } from "@material-ui/core";
 import { useRouter } from "next/router";
 
 export default function LatestPosts(props) {
-  const router = useRouter();
+  const {
+    pathname,
+    query: { category },
+  } = useRouter();
 
   return (
     <Layout>
       <Head>
-        <title>Latest - Updates Shop</title>
-        <meta
-          name="description"
-          content="Get the latest news, headlines and stories from Pakistan and across the world. We have the most up to date information on politics, technology, business, entertainment and more."
-        />
-        <meta property="og:url" content={router.pathname} key="ogurl" />
+        <title>
+          {category[0].toUpperCase() + category.slice(1)} - Updates Shop
+        </title>
+        <meta name="description" content={props.posts[0].excerpt} />
+        <meta property="og:url" content={pathname} key="ogurl" />
         <meta property="og:image" content="/favicon.ico" key="ogimage" />
         <meta property="og:site_name" content="Updates Shop" key="ogsitename" />
         <meta
           property="og:title"
-          content="Latest - Updates Shop"
+          content={`${
+            category[0].toUpperCase() + category.slice(1)
+          } - Updates Shop`}
           key="ogtitle"
         />
         <meta
           property="og:description"
-          content="Get the latest news, headlines and stories from Pakistan and across the world. We have the most up to date information on politics, technology, business, entertainment and more."
+          content={props.posts[0].excerpt}
           key="ogdesc"
         />
       </Head>
@@ -41,7 +45,7 @@ export default function LatestPosts(props) {
             fontSize: "2.125rem",
           }}
         >
-          Read Latest News
+          Read {category[0].toUpperCase() + category.slice(1)} News
         </Typography>
       </Container>
 
@@ -50,8 +54,10 @@ export default function LatestPosts(props) {
   );
 }
 
-export async function getStaticProps() {
-  const res = await axios.get("https://latest-news-api.herokuapp.com/Latest");
+export const getStaticProps = async ({ params: { category } }) => {
+  const res = await axios.get(
+    `https://latest-news-api.herokuapp.com/${category}`
+  );
   const posts = res.data;
   return {
     props: {
@@ -59,4 +65,20 @@ export async function getStaticProps() {
     },
     revalidate: 10,
   };
-}
+};
+
+export const getStaticPaths = async () => {
+  const categoriesRes = await axios.get(
+    "https://latest-news-api.herokuapp.com/categories"
+  );
+  const categories = categoriesRes.data;
+
+  const paths = categories.map((category) => ({
+    params: { category: category.toLowerCase() },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+};

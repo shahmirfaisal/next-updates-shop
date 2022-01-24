@@ -75,7 +75,7 @@ export default function Home(props) {
               component="section"
             >
               {props.posts.slice(0, numOfPosts).map((post) => (
-                <Grid item xs={12} md={6} key={post.id}>
+                <Grid item xs={12} md={7} key={post.id}>
                   <Post post={post} />
                 </Grid>
               ))}
@@ -85,7 +85,7 @@ export default function Home(props) {
               <Button
                 variant="outlined"
                 color="primary"
-                style={{ margin: "50px auto 0 auto", display: "block" }}
+                style={{ margin: "20px 0 0 0", display: "block" }}
                 onClick={loadMore}
               >
                 Load more articles...
