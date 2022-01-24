@@ -39,10 +39,12 @@ export const useStyles = makeStyles({
   },
 
   section: {
+    color: "black",
     "& p": {
       marginBottom: "15px",
       lineHeight: 1.6,
-      wordSpacing: "3px",
+      wordSpacing: "1px",
+      fontSize: "1rem",
     },
     "& h1, & h2, & h3, & h4, & h5, & h6": {
       marginBottom: "25px",

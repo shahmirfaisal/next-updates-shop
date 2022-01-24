@@ -59,6 +59,11 @@ export default function News(props) {
               </Typography>
             </header>
 
+            <Typography
+              component="hr"
+              style={{ marginBottom: "20px" }}
+            ></Typography>
+
             <section
               className={classes.section}
               dangerouslySetInnerHTML={{ __html: props.post.html }}
