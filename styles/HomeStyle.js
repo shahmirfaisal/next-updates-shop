@@ -18,6 +18,13 @@ export const useStyles = makeStyles({
     0% 35%,
     0 0
   )`,
+
+    "@media (max-width: 599px)": {
+      "&": {
+        clipPath: "none",
+        paddingBottom: "60px",
+      },
+    },
   },
 
   content: {
@@ -43,5 +50,10 @@ export const useStyles = makeStyles({
 
   posts: {
     transform: "translateY(-100px)",
+    "@media (max-width: 599px)": {
+      "&": {
+        transform: "translateY(0)",
+      },
+    },
   },
 });

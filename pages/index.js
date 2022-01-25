@@ -8,6 +8,7 @@ import axios from "axios";
 import Post from "../components/Post";
 import Aside from "../components/Aside";
 import { useRouter } from "next/router";
+import { AdBanner } from "../components/AdBanner";
 
 export default function Home(props) {
   const classes = useStyles();
@@ -65,8 +66,13 @@ export default function Home(props) {
       </section>
 
       <Container maxWidth="lg">
-        <Grid container justifyContent="space-between">
-          <Grid item md={12} xs={12} component="section">
+        <Grid
+          container
+          justifyContent="space-between"
+          spacing={3}
+          wrap="wrap-reverse"
+        >
+          <Grid item sm={7} xs={12} component="section">
             <Grid
               container
               spacing={6}
@@ -75,7 +81,7 @@ export default function Home(props) {
               component="section"
             >
               {props.posts.slice(0, numOfPosts).map((post) => (
-                <Grid item xs={12} md={7} key={post.id}>
+                <Grid item xs={12} md={12} key={post.id}>
                   <Post post={post} />
                 </Grid>
               ))}
@@ -96,6 +102,10 @@ export default function Home(props) {
           {/* <Grid item md={4} xs={12}>
             <Aside />
           </Grid> */}
+
+          <Grid item sm={4} xs={12}>
+            <AdBanner />
+          </Grid>
         </Grid>
       </Container>
     </Layout>
