@@ -21,7 +21,7 @@ class MyDocument extends Document {
 
           <script
             async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7942887016717078"
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6488425149234248"
             crossOrigin="anonymous"
           ></script>
         </Head>
