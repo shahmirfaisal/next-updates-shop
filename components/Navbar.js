@@ -1,29 +1,29 @@
-import { useState } from "react";
+import { useState } from "react"
 import {
   AppBar,
   Toolbar,
   Typography,
   Hidden,
-  IconButton,
-} from "@material-ui/core";
+  IconButton
+} from "@material-ui/core"
 import {
   MenuRounded,
   HomeOutlined,
-  ContactSupportOutlined,
-} from "@material-ui/icons";
-import { useStyles } from "../styles/NavbarStyle";
-import Sidebar from "./Sidebar";
-import { useRouter } from "next/router";
-import Link from "next/link";
+  ContactSupportOutlined
+} from "@material-ui/icons"
+import { useStyles } from "../styles/NavbarStyle"
+import Sidebar from "./Sidebar"
+import { useRouter } from "next/router"
+import Link from "next/link"
 
 const Navbar = () => {
-  const [openSidebar, setOpenSidebar] = useState(false);
+  const [openSidebar, setOpenSidebar] = useState(false)
 
-  const handleOpenSidebar = () => setOpenSidebar(true);
-  const handleCloseSidebar = () => setOpenSidebar(false);
+  const handleOpenSidebar = () => setOpenSidebar(true)
+  const handleCloseSidebar = () => setOpenSidebar(false)
 
-  const classes = useStyles();
-  const router = useRouter();
+  const classes = useStyles()
+  const router = useRouter()
 
   return (
     <AppBar className={classes.root} position="relative">
@@ -36,7 +36,7 @@ const Navbar = () => {
           <Typography variant="body1" className={classes.link}>
             <Link href="/">Home</Link>
           </Typography>
-          <Typography variant="body1" className={classes.link}>
+          {/* <Typography variant="body1" className={classes.link}>
             <Link href="/latest">Latest</Link>
           </Typography>
           <Typography variant="body1" className={classes.link}>
@@ -50,7 +50,7 @@ const Navbar = () => {
           </Typography>
           <Typography variant="body1" className={classes.link}>
             <Link href="/business">Business</Link>
-          </Typography>
+          </Typography> */}
           <Typography variant="body1" className={classes.link}>
             <Link href="/contact">Contact</Link>
           </Typography>
@@ -65,7 +65,7 @@ const Navbar = () => {
         <Sidebar open={openSidebar} onClose={handleCloseSidebar} />
       </Toolbar>
     </AppBar>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

@@ -1,23 +1,25 @@
-import { useEffect, useState } from "react";
-import Head from "next/head";
-import Layout from "../components/Layout";
-import { Button, Container, Typography, Grid } from "@material-ui/core";
-import { LocalLibrary } from "@material-ui/icons";
-import { useStyles } from "../styles/HomeStyle";
-import axios from "axios";
-import Post from "../components/Post";
-import Aside from "../components/Aside";
-import { useRouter } from "next/router";
-import { AdBanner } from "../components/AdBanner";
+import { useEffect, useState } from "react"
+import Head from "next/head"
+import Layout from "../components/Layout"
+import { Button, Container, Typography, Grid } from "@material-ui/core"
+import { LocalLibrary } from "@material-ui/icons"
+import { useStyles } from "../styles/HomeStyle"
+import axios from "axios"
+import Post from "../components/Post"
+import Aside from "../components/Aside"
+import { useRouter } from "next/router"
+import { AdBanner } from "../components/AdBanner"
+import { createClient } from "contentful"
 
 export default function Home(props) {
-  const classes = useStyles();
-  const [numOfPosts, setNumOfPosts] = useState(10);
-  const router = useRouter();
+  const classes = useStyles()
+  const [numOfPosts, setNumOfPosts] = useState(10)
+  const router = useRouter()
+  console.log(props.posts)
 
   const loadMore = () => {
-    setNumOfPosts((numOfPosts) => numOfPosts + 10);
-  };
+    setNumOfPosts((numOfPosts) => numOfPosts + 10)
+  }
 
   return (
     <Layout>
@@ -109,16 +111,23 @@ export default function Home(props) {
         </Grid>
       </Container>
     </Layout>
-  );
+  )
 }
 
 export async function getStaticProps() {
-  const res = await axios.get("https://latest-news-api.herokuapp.com/Latest");
-  const posts = res.data;
+  // const res = await axios.get("https://latest-news-api.herokuapp.com/Latest")
+  // const posts = res.data
+  const client = createClient({
+    space: "4q0lf2wn2f4p",
+    accessToken: "y9gnClGiKgF9rp0lo7qpq5MX_UUUcPBBTO3SAbjFjnk"
+  })
+
+  const res = await client.getEntries({ content_type: "article" })
+  console.log(res)
   return {
     props: {
-      posts,
+      posts: res.items
     },
-    revalidate: 10,
-  };
+    revalidate: 10
+  }
 }

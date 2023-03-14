@@ -1,10 +1,10 @@
-import React from "react";
-import { useStyles } from "../styles/FooterStyle.js";
-import { Container, Grid, Typography } from "@material-ui/core";
-import Link from "next/link";
+import React from "react"
+import { useStyles } from "../styles/FooterStyle.js"
+import { Container, Grid, Typography } from "@material-ui/core"
+import Link from "next/link"
 
 const Footer = () => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <footer className={classes.footer}>
@@ -26,7 +26,7 @@ const Footer = () => {
             <Link href="/terms">Terms and Conditions</Link>
           </Grid>
 
-          <Grid item>
+          {/* <Grid item>
             <Typography className={classes.bold}>Categories</Typography>
 
             <Link href="/latest">Latest</Link>
@@ -34,7 +34,7 @@ const Footer = () => {
             <Link href="/sport">Sport</Link>
             <Link href="/technology">Technology</Link>
             <Link href="/business">Business</Link>
-          </Grid>
+          </Grid> */}
 
           <Grid item>
             <Typography className={classes.bold}>Contact</Typography>
@@ -55,7 +55,7 @@ const Footer = () => {
         </Typography>
       </Container>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

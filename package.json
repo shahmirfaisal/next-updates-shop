@@ -3,15 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "cross-env NODE_OPTIONS='--openssl-legacy-provider' next dev",
     "build": "next build",
     "postbuild": "next-sitemap --config sitemap-config.js",
     "start": "next start"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^15.16.3",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "axios": "^0.24.0",
+    "contentful": "^9.3.3",
+    "cross-env": "^7.0.3",
+    "moment": "^2.29.4",
     "next": "^11.0.0",
     "next-sitemap": "^1.6.203",
     "react": "17.0.2",
