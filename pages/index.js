@@ -115,8 +115,6 @@ export default function Home(props) {
 }
 
 export async function getStaticProps() {
-  // const res = await axios.get("https://latest-news-api.herokuapp.com/Latest")
-  // const posts = res.data
   const client = createClient({
     space: "4q0lf2wn2f4p",
     accessToken: "y9gnClGiKgF9rp0lo7qpq5MX_UUUcPBBTO3SAbjFjnk"

@@ -34,7 +34,7 @@ const Post = ({ post }) => {
       </CardActionArea>
       <CardContent>
         <Typography variant="h5" className={classes.title}>
-          <Link href={`/news/${slug}/${post.id}`}>{post.fields.title}</Link>
+          <Link href={`/news/${slug}`}>{post.fields.title}</Link>
         </Typography>
         <Typography variant="body1">{post.fields.description}</Typography>
 
