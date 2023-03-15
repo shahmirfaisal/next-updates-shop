@@ -1,5 +1,5 @@
 module.exports = {
   images: {
-    domains: ["i.dawn.com"],
-  },
-};
+    domains: ["i.dawn.com", "images.ctfassets.net"]
+  }
+}

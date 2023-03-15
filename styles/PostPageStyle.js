@@ -1,16 +1,16 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles"
 
 export const useStyles = makeStyles({
   container: {
-    marginTop: "100px",
+    marginTop: "100px"
   },
 
   article: {
     backgroundColor: "white",
     "& hr": {
       border: "0.2px solid rgba(0, 0, 0, 0.1)",
-      marginBottom: "50px",
-    },
+      marginBottom: "50px"
+    }
   },
 
   img: {
@@ -21,21 +21,21 @@ export const useStyles = makeStyles({
       height: "100%",
       display: "block",
       objectFit: "cover",
-      objectPosition: "top",
-    },
+      objectPosition: "top"
+    }
   },
 
   title: {
     fontWeight: 800,
     margin: "20px 0",
     fontSize: "2.125rem",
-    lineHeight: 1.235,
+    lineHeight: 1.235
   },
 
   date: {
     color: "rgb(95, 95, 95)",
     marginBottom: "20px",
-    fontWeight: 500,
+    fontWeight: 500
   },
 
   section: {
@@ -44,18 +44,18 @@ export const useStyles = makeStyles({
       marginBottom: "15px",
       lineHeight: 1.6,
       wordSpacing: "1px",
-      fontSize: "1rem",
+      fontSize: "1rem"
     },
     "& h1, & h2, & h3, & h4, & h5, & h6": {
-      marginBottom: "25px",
+      marginBottom: "25px"
     },
 
     "& ul, & ol": {
-      padding: "0 0 0 20px",
+      padding: "0 0 0 20px"
     },
     "& img": {
       display: "block",
-      width: "100%",
-    },
-  },
-});
+      width: "100%"
+    }
+  }
+})

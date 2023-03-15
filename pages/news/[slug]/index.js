@@ -1,17 +1,36 @@
 import axios from "axios"
 import Layout from "../../../components/Layout"
 import Head from "next/head"
-import { Container, Grid, Typography, Button } from "@material-ui/core"
+import { Container, Grid, Typography, Button, Box } from "@material-ui/core"
 import { useStyles } from "../../../styles/PostPageStyle"
 import { useRouter } from "next/router"
 import LatestPosts from "../../../components/LatestPosts"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { createClient } from "contentful"
 import moment from "moment"
+import { BLOCKS } from "@contentful/rich-text-types"
+import Image from "next/image"
 
 export default function News({ post }) {
   const classes = useStyles()
   const router = useRouter()
+
+  let options = {
+    renderNode: {
+      [BLOCKS.EMBEDDED_ASSET]: (node) => (
+        <Box
+          sx={{
+            "& > img": {
+              display: "block",
+              width: "100%"
+            }
+          }}
+        >
+          <img src={"https:" + node.data.target.fields.file.url} />
+        </Box>
+      )
+    }
+  }
 
   return (
     <Layout>
@@ -47,17 +66,24 @@ export default function News({ post }) {
             className={classes.article}
           >
             <header>
-              <div className={classes.img}>
+              <Box
+                sx={{
+                  "& > img": {
+                    display: "block",
+                    width: "100%"
+                  }
+                }}
+              >
                 <img
-                  src={post.coverImage.fields.file.url}
+                  src={"https:" + post.coverImage.fields.file.url}
                   alt={post.coverImage.fields.title}
                 />
-              </div>
+              </Box>
               <Typography className={classes.title} variant="h1">
                 {post.title}
               </Typography>
               <Typography className={classes.date}>
-                {moment(post.date).format("DD-MM-YYYY")}
+                Published on {moment(post.date).format("DD-MM-YYYY")}
               </Typography>
             </header>
 
@@ -67,7 +93,7 @@ export default function News({ post }) {
             ></Typography>
 
             <section className={classes.section}>
-              {documentToReactComponents(post.body)}
+              {documentToReactComponents(post.body, options)}
             </section>
 
             <Typography component="hr"></Typography>
