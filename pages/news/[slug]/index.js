@@ -10,7 +10,6 @@ import { createClient } from "contentful"
 import moment from "moment"
 
 export default function News({ post }) {
-  console.log(post.body)
   const classes = useStyles()
   const router = useRouter()
 
@@ -103,8 +102,6 @@ export async function getStaticProps({ params: { slug } }) {
     "fields.slug": slug
   })
 
-  console.log(res.items[0].fields)
-
   return {
     props: {
       post: res.items[0].fields,
@@ -128,6 +125,8 @@ export const getStaticPaths = async () => {
       }
     }
   })
+
+  console.log("PATHS", paths)
 
   return {
     paths,

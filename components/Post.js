@@ -17,10 +17,6 @@ import moment from "moment"
 const Post = ({ post }) => {
   const classes = useStyles()
   const router = useRouter()
-  const slug = slugify(post.fields.title, {
-    remove: /[*+~.()'"!:@]/g,
-    lower: true
-  })
 
   return (
     <Card className={classes.card} component="article">
@@ -29,12 +25,12 @@ const Post = ({ post }) => {
           className={classes.img}
           title={post.fields.coverImage.fields.title}
           image={post.fields.coverImage.fields.file.url}
-          onClick={() => router.push(`/news/${slug}`)}
+          onClick={() => router.push(`/news/${post.fields.slug}`)}
         />
       </CardActionArea>
       <CardContent>
         <Typography variant="h5" className={classes.title}>
-          <Link href={`/news/${slug}`}>{post.fields.title}</Link>
+          <Link href={`/news/${post.fields.slug}`}>{post.fields.title}</Link>
         </Typography>
         <Typography variant="body1">{post.fields.description}</Typography>
 
@@ -47,7 +43,7 @@ const Post = ({ post }) => {
         <Button
           variant="outlined"
           color="primary"
-          onClick={() => router.push(`/news/${slug}`)}
+          onClick={() => router.push(`/news/${post.fields.slug}`)}
         >
           Continue reading...
         </Button>

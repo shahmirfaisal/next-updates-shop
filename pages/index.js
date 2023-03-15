@@ -15,7 +15,6 @@ export default function Home(props) {
   const classes = useStyles()
   const [numOfPosts, setNumOfPosts] = useState(10)
   const router = useRouter()
-  console.log(props.posts)
 
   const loadMore = () => {
     setNumOfPosts((numOfPosts) => numOfPosts + 10)
@@ -121,7 +120,7 @@ export async function getStaticProps() {
   })
 
   const res = await client.getEntries({ content_type: "article" })
-  console.log(res)
+
   return {
     props: {
       posts: res.items
