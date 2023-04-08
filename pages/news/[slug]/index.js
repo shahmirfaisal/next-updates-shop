@@ -11,9 +11,10 @@ import moment from "moment"
 import { BLOCKS } from "@contentful/rich-text-types"
 import Image from "next/image"
 
-export default function News({ post }) {
+export default function News({ post, categories }) {
   const classes = useStyles()
   const router = useRouter()
+  console.log(post)
 
   let options = {
     renderNode: {
@@ -26,14 +27,17 @@ export default function News({ post }) {
             }
           }}
         >
-          <img src={"https:" + node.data.target.fields.file.url} />
+          <img
+            src={"https:" + node.data.target.fields.file.url}
+            alt={node.data.target.fields.title}
+          />
         </Box>
       )
     }
   }
 
   return (
-    <Layout>
+    <Layout categories={categories}>
       <Head>
         <title>{`${post.title} - Updates Shop`}</title>
         <meta name="description" content={post.description} />
@@ -128,10 +132,13 @@ export async function getStaticProps({ params: { slug } }) {
     "fields.slug": slug
   })
 
+  const categoryRes = await client.getEntries({ content_type: "category" })
+
   return {
     props: {
       post: res.items[0].fields,
-      posts: []
+      posts: [],
+      categories: categoryRes.items
     }
   }
 }
@@ -151,8 +158,6 @@ export const getStaticPaths = async () => {
       }
     }
   })
-
-  console.log("PATHS", paths)
 
   return {
     paths,

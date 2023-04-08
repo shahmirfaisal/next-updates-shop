@@ -16,7 +16,7 @@ import Sidebar from "./Sidebar"
 import { useRouter } from "next/router"
 import Link from "next/link"
 
-const Navbar = () => {
+const Navbar = ({ categories }) => {
   const [openSidebar, setOpenSidebar] = useState(false)
 
   const handleOpenSidebar = () => setOpenSidebar(true)
@@ -36,6 +36,15 @@ const Navbar = () => {
           <Typography variant="body1" className={classes.link}>
             <Link href="/">Home</Link>
           </Typography>
+
+          {categories.map((category) => (
+            <Typography variant="body1" className={classes.link}>
+              <Link href={`/category/${category.fields.name}`}>
+                {category.fields.name}
+              </Link>
+            </Typography>
+          ))}
+
           {/* <Typography variant="body1" className={classes.link}>
             <Link href="/latest">Latest</Link>
           </Typography>
@@ -62,7 +71,11 @@ const Navbar = () => {
           </IconButton>
         </Hidden>
 
-        <Sidebar open={openSidebar} onClose={handleCloseSidebar} />
+        <Sidebar
+          categories={categories}
+          open={openSidebar}
+          onClose={handleCloseSidebar}
+        />
       </Toolbar>
     </AppBar>
   )

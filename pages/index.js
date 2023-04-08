@@ -16,12 +16,14 @@ export default function Home(props) {
   const [numOfPosts, setNumOfPosts] = useState(10)
   const router = useRouter()
 
+  console.log(props.posts)
+
   const loadMore = () => {
     setNumOfPosts((numOfPosts) => numOfPosts + 10)
   }
 
   return (
-    <Layout>
+    <Layout categories={props.categories}>
       <Head>
         <title>Updates Shop - Latest News, Headlines and Stories.</title>
         <meta
@@ -119,11 +121,13 @@ export async function getStaticProps() {
     accessToken: "y9gnClGiKgF9rp0lo7qpq5MX_UUUcPBBTO3SAbjFjnk"
   })
 
-  const res = await client.getEntries({ content_type: "article" })
+  const articleRes = await client.getEntries({ content_type: "article" })
+  const categoryRes = await client.getEntries({ content_type: "category" })
 
   return {
     props: {
-      posts: res.items
+      posts: articleRes.items,
+      categories: categoryRes.items
     },
     revalidate: 10
   }
