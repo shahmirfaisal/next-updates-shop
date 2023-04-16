@@ -44,7 +44,7 @@ export default function News({ post, categories }) {
         <meta property="og:url" content={router.pathname} key="ogurl" />
         <meta
           property="og:image"
-          content={post.coverImage.fields.file.url}
+          content={"https:" + post.coverImage.fields.file.url}
           key="ogimage"
         />
         <meta property="og:site_name" content="Updates Shop" key="ogsitename" />
