@@ -128,7 +128,6 @@ export async function getStaticProps() {
     props: {
       posts: articleRes.items,
       categories: categoryRes.items
-    },
-    revalidate: 10
+    }
   }
 }

@@ -1,52 +1,53 @@
-import { useState } from "react";
-import Layout from "../components/Layout";
-import Head from "next/head";
+import { useState } from "react"
+import Layout from "../components/Layout"
+import Head from "next/head"
 import {
   Container,
   Typography,
   Button,
   TextField,
   Paper,
-  CircularProgress,
-} from "@material-ui/core";
-import axios from "axios";
-import { NotificationManager } from "react-notifications";
-import { useStyles } from "../styles/ContactStyle";
-import { useRouter } from "next/router";
+  CircularProgress
+} from "@material-ui/core"
+import axios from "axios"
+import { NotificationManager } from "react-notifications"
+import { useStyles } from "../styles/ContactStyle"
+import { useRouter } from "next/router"
+import { createClient } from "contentful"
 
-export default function ContactPage() {
-  const [loading, setLoading] = useState(false);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const router = useRouter();
-  const classes = useStyles();
+export default function ContactPage(props) {
+  const [loading, setLoading] = useState(false)
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState("")
+  const router = useRouter()
+  const classes = useStyles()
 
-  const changeName = (e) => setName(e.target.value);
-  const changeEmail = (e) => setEmail(e.target.value);
-  const changeMessage = (e) => setMessage(e.target.value);
+  const changeName = (e) => setName(e.target.value)
+  const changeEmail = (e) => setEmail(e.target.value)
+  const changeMessage = (e) => setMessage(e.target.value)
 
   const submit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+    e.preventDefault()
+    setLoading(true)
     try {
       await axios.post("https://updates-shop.herokuapp.com/api/contact", {
         name,
         email,
-        message,
-      });
-      setName("");
-      setEmail("");
-      setMessage("");
-      NotificationManager.success("Message sent!");
+        message
+      })
+      setName("")
+      setEmail("")
+      setMessage("")
+      NotificationManager.success("Message sent!")
     } catch (error) {
-      NotificationManager.error(error.response.data);
+      NotificationManager.error(error.response.data)
     }
-    setLoading(false);
-  };
+    setLoading(false)
+  }
 
   return (
-    <Layout>
+    <Layout categories={props.categories}>
       <Head>
         <title>Contact Us - Updates Shop</title>
         <meta
@@ -98,5 +99,20 @@ export default function ContactPage() {
         </Paper>
       </Container>
     </Layout>
-  );
+  )
+}
+
+export async function getStaticProps() {
+  const client = createClient({
+    space: "4q0lf2wn2f4p",
+    accessToken: "y9gnClGiKgF9rp0lo7qpq5MX_UUUcPBBTO3SAbjFjnk"
+  })
+
+  const categoryRes = await client.getEntries({ content_type: "category" })
+
+  return {
+    props: {
+      categories: categoryRes.items
+    }
+  }
 }

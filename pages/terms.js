@@ -1,13 +1,14 @@
-import Layout from "../components/Layout";
-import Head from "next/head";
-import { useRouter } from "next/router";
-import { Container } from "@material-ui/core";
+import Layout from "../components/Layout"
+import Head from "next/head"
+import { useRouter } from "next/router"
+import { Container } from "@material-ui/core"
+import { createClient } from "contentful"
 
-const TermsPage = () => {
-  const router = useRouter();
+const TermsPage = (props) => {
+  const router = useRouter()
 
   return (
-    <Layout>
+    <Layout categories={props.categories}>
       <Head>
         <title>Terms and Conditions - Updates Shop</title>
         <meta
@@ -345,7 +346,22 @@ const TermsPage = () => {
         </p>
       </Container>
     </Layout>
-  );
-};
+  )
+}
 
-export default TermsPage;
+export async function getStaticProps() {
+  const client = createClient({
+    space: "4q0lf2wn2f4p",
+    accessToken: "y9gnClGiKgF9rp0lo7qpq5MX_UUUcPBBTO3SAbjFjnk"
+  })
+
+  const categoryRes = await client.getEntries({ content_type: "category" })
+
+  return {
+    props: {
+      categories: categoryRes.items
+    }
+  }
+}
+
+export default TermsPage
