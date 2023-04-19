@@ -1,39 +1,40 @@
-import { useEffect } from "react";
-import "../styles/global.scss";
-import "react-notifications/lib/notifications.css";
-import { ThemeProvider, createTheme } from "@material-ui/core/styles";
-import { CssBaseline } from "@material-ui/core";
-import { NotificationContainer } from "react-notifications";
-import Script from "next/script";
-import { useRouter } from "next/router";
-import * as gtag from "../lib/gtag";
+import { useEffect } from "react"
+import "../styles/global.scss"
+import "react-notifications/lib/notifications.css"
+import { ThemeProvider, createTheme } from "@material-ui/core/styles"
+import { CssBaseline } from "@material-ui/core"
+import { NotificationContainer } from "react-notifications"
+import Script from "next/script"
+import { useRouter } from "next/router"
+import * as gtag from "../lib/gtag"
+import { Analytics } from "@vercel/analytics/react"
 
 export default function App({ Component, pageProps }) {
   useEffect(() => {
     // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector("#jss-server-side");
+    const jssStyles = document.querySelector("#jss-server-side")
     if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles);
+      jssStyles.parentElement.removeChild(jssStyles)
     }
-  }, []);
+  }, [])
 
-  const router = useRouter();
+  const router = useRouter()
 
   useEffect(() => {
     const handleRouteChange = (url) => {
-      gtag.pageview(url);
-    };
-    router.events.on("routeChangeComplete", handleRouteChange);
+      gtag.pageview(url)
+    }
+    router.events.on("routeChangeComplete", handleRouteChange)
     return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
-  }, [router.events]);
+      router.events.off("routeChangeComplete", handleRouteChange)
+    }
+  }, [router.events])
 
   const theme = createTheme({
     typography: {
-      fontFamily: '"Montserrat", sans-serif',
-    },
-  });
+      fontFamily: '"Montserrat", sans-serif'
+    }
+  })
 
   return (
     <>
@@ -53,15 +54,16 @@ export default function App({ Component, pageProps }) {
             gtag('config', '${gtag.GA_TRACKING_ID}', {
               page_path: window.location.pathname,
             });
-          `,
+          `
         }}
       />
 
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Component {...pageProps} />
+        <Analytics />
         <NotificationContainer />
       </ThemeProvider>
     </>
-  );
+  )
 }
