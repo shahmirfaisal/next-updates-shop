@@ -16,8 +16,6 @@ export default function Home(props) {
   const [numOfPosts, setNumOfPosts] = useState(10)
   const router = useRouter()
 
-  console.log(props.posts)
-
   const loadMore = () => {
     setNumOfPosts((numOfPosts) => numOfPosts + 10)
   }
@@ -35,6 +33,7 @@ export default function Home(props) {
           content={process.env.NEXT_PUBLIC_SITE_URL + router.asPath}
           key="ogurl"
         />
+        <meta property="og:type" content="website" />
         <meta property="og:image" content="/favicon.ico" key="ogimage" />
         <meta property="og:site_name" content="Updates Shop" key="ogsitename" />
         <meta
@@ -47,6 +46,23 @@ export default function Home(props) {
           content="Get the latest news, headlines and stories from Pakistan and across the world. We have the most up to date information on politics, technology, business, entertainment and more."
           key="ogdesc"
         />
+
+        {/* Twitter Meta Tags  */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="updatesshop.com" />
+        <meta
+          property="twitter:url"
+          content={process.env.NEXT_PUBLIC_SITE_URL + router.asPath}
+        />
+        <meta
+          name="twitter:title"
+          content="Updates Shop - Latest News, Headlines and Stories."
+        />
+        <meta
+          name="twitter:description"
+          content="Get the latest news, headlines and stories from Pakistan and across the world. We have the most up to date information on politics, technology, business, entertainment and more."
+        />
+        <meta name="twitter:image" content="/favicon.ico" />
       </Head>
 
       <section className={classes.container}>

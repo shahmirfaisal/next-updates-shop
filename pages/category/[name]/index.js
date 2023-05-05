@@ -21,6 +21,7 @@ const CategoryPage = ({ articles, categories, name }) => {
           content={process.env.NEXT_PUBLIC_SITE_URL + router.asPath}
           key="ogurl"
         />
+        <meta property="og:type" content="website" />
         {/* <meta
           property="og:image"
           content={"https:" + post.coverImage.fields.file.url}
@@ -37,6 +38,17 @@ const CategoryPage = ({ articles, categories, name }) => {
           content={`Everything about ${name}`}
           key="ogdesc"
         />
+
+        {/* Twitter Meta Tags  */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="updatesshop.com" />
+        <meta
+          property="twitter:url"
+          content={process.env.NEXT_PUBLIC_SITE_URL + router.asPath}
+        />
+        <meta name="twitter:title" content={`${name} - Updates Shop`} />
+        <meta name="twitter:description" content={`Everything about ${name}`} />
+        {/* <meta name="twitter:image" content="" /> */}
       </Head>
 
       <Container maxWidth="sm" style={{ marginTop: "50px" }}>

@@ -14,7 +14,6 @@ import Image from "next/image"
 export default function News({ post, categories }) {
   const classes = useStyles()
   const router = useRouter()
-  console.log(router)
 
   let options = {
     renderNode: {
@@ -46,6 +45,7 @@ export default function News({ post, categories }) {
           content={process.env.NEXT_PUBLIC_SITE_URL + router.asPath}
           key="ogurl"
         />
+        <meta property="og:type" content="website" />
         <meta
           property="og:image"
           content={"https:" + post.coverImage.fields.file.url}
@@ -61,6 +61,20 @@ export default function News({ post, categories }) {
           property="og:description"
           content={post.description}
           key="ogdesc"
+        />
+
+        {/* Twitter Meta Tags  */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="updatesshop.com" />
+        <meta
+          property="twitter:url"
+          content={process.env.NEXT_PUBLIC_SITE_URL + router.asPath}
+        />
+        <meta name="twitter:title" content={`${post.title} - Updates Shop`} />
+        <meta name="twitter:description" content={post.description} />
+        <meta
+          name="twitter:image"
+          content={"https:" + post.coverImage.fields.file.url}
         />
       </Head>
 

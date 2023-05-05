@@ -59,6 +59,7 @@ export default function ContactPage(props) {
           content={process.env.NEXT_PUBLIC_SITE_URL + router.asPath}
           key="ogurl"
         />
+        <meta property="og:type" content="website" />
         <meta property="og:image" content="/favicon.ico" key="ogimage" />
         <meta property="og:site_name" content="Updates Shop" key="ogsitename" />
         <meta
