@@ -14,7 +14,7 @@ import Image from "next/image"
 export default function News({ post, categories }) {
   const classes = useStyles()
   const router = useRouter()
-  console.log(post)
+  console.log(router)
 
   let options = {
     renderNode: {
@@ -41,7 +41,11 @@ export default function News({ post, categories }) {
       <Head>
         <title>{`${post.title} - Updates Shop`}</title>
         <meta name="description" content={post.description} />
-        <meta property="og:url" content={router.pathname} key="ogurl" />
+        <meta
+          property="og:url"
+          content={process.env.NEXT_PUBLIC_SITE_URL + router.asPath}
+          key="ogurl"
+        />
         <meta
           property="og:image"
           content={"https:" + post.coverImage.fields.file.url}

@@ -15,7 +15,11 @@ const PrivacyPage = (props) => {
           name="description"
           content="At Updates Shop, accessible from https://updatesshop.com/, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Updates Shop and how we use it."
         />
-        <meta property="og:url" content={router.pathname} key="ogurl" />
+        <meta
+          property="og:url"
+          content={process.env.NEXT_PUBLIC_SITE_URL + router.asPath}
+          key="ogurl"
+        />
         <meta property="og:image" content="/favicon.ico" key="ogimage" />
         <meta property="og:site_name" content="Updates Shop" key="ogsitename" />
         <meta

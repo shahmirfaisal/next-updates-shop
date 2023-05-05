@@ -4,13 +4,41 @@ import { Button, Container, Grid, Typography } from "@material-ui/core"
 import { AdBanner } from "../../../components/AdBanner"
 import Post from "../../../components/Post"
 import { useStyles } from "../../../styles/HomeStyle"
+import Head from "next/head"
+import { useRouter } from "next/router"
 
 const CategoryPage = ({ articles, categories, name }) => {
   const classes = useStyles()
-  console.log(articles)
+  const router = useRouter()
 
   return (
     <Layout categories={categories}>
+      <Head>
+        <title>{`${name} - Updates Shop`}</title>
+        <meta name="description" content={`Everything about ${name}`} />
+        <meta
+          property="og:url"
+          content={process.env.NEXT_PUBLIC_SITE_URL + router.asPath}
+          key="ogurl"
+        />
+        {/* <meta
+          property="og:image"
+          content={"https:" + post.coverImage.fields.file.url}
+          key="ogimage"
+        /> */}
+        <meta property="og:site_name" content="Updates Shop" key="ogsitename" />
+        <meta
+          property="og:title"
+          content={`${name} - Updates Shop`}
+          key="ogtitle"
+        />
+        <meta
+          property="og:description"
+          content={`Everything about ${name}`}
+          key="ogdesc"
+        />
+      </Head>
+
       <Container maxWidth="sm" style={{ marginTop: "50px" }}>
         <Typography
           component="h1"

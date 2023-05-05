@@ -15,7 +15,11 @@ const TermsPage = (props) => {
           name="description"
           content="These terms and conditions outline the rules and regulations for the use of Updates Shop's Website, located at https://updatesshop.com/. By accessing this website we assume you accept these terms and conditions."
         />
-        <meta property="og:url" content={router.pathname} key="ogurl" />
+        <meta
+          property="og:url"
+          content={process.env.NEXT_PUBLIC_SITE_URL + router.asPath}
+          key="ogurl"
+        />
         <meta property="og:image" content="/favicon.ico" key="ogimage" />
         <meta property="og:site_name" content="Updates Shop" key="ogsitename" />
         <meta
